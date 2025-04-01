@@ -64,3 +64,8 @@ Je dois retrouver:
 - Les lignes de commandes que vous avez tapez pour installer l'ingress controller et kubecost dans un fichier `helm.md`
 
 **Si vous ne voulez pas mettre votre code en public sur Github pensez a m'ajouter dans les contributeurs [nomaddevops](https://github.com/nomaddevops)**
+
+## Auteurs
+
+Auteur de l'exercice : [nomaddevops](https://github.com/nomaddevops)
+Etudiant : [axelggl](https://github.com/axelggl)
