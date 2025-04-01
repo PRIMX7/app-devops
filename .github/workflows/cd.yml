@@ -22,6 +22,6 @@ jobs:
       with:
         version: v3.14.0
 
-    - name: Deploy with Helm
-      run: |
-        helm upgrade --install devops-app ./helm-chart
+    #- name: Deploy with Helm
+    #  run: |
+    #    helm upgrade --install devops-app ./helm-chart
