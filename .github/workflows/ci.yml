@@ -43,11 +43,11 @@ jobs:
 
     - name: Install Docker Scout
       run: |
-        curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/local/bin
+        curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b .
 
-    - name: Run Docker Scout
+    - name: Run Docker Scout (CLI direct)
       run: |
-        docker scout quickview glazemoyu/devops
+        ./scout quickview glazemoyu/devops
 
     - name: Push Docker image
       run: |
