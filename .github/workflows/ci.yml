@@ -37,19 +37,17 @@ jobs:
       run: |
         bandit -r src/app.py --severity-level high
 
-    - name: Docker Scout
-        id: docker-scout
-        uses: docker/scout-action@v1
-        with:
-          command: compare
-          image: ${{ secrets.DOCKER_USERNAME }}/devops:latest
-          ignore-unchanged: true
-          only-severities: critical,high
-          organization: ${{ secrets.DOCKER_USERNAME }}
-
     - name: Build Docker image
       run: |
         docker build -t glazemoyu/devops .
+
+    - name: Install Docker Scout
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/local/bin
+
+    - name: Run Docker Scout
+      run: |
+        docker scout quickview glazemoyu/devops
 
     - name: Push Docker image
       run: |
