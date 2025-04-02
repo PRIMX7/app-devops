@@ -9,22 +9,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Create local Kubernetes cluster
-        run: |
-          # Crée un cluster Kubernetes avec Kind
-          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.23.0/kind-linux-amd64
-          chmod +x ./kind
-          sudo mv ./kind /usr/local/bin/
-          kind create cluster  # Cluster nommé "kind"
+    - name: Set up kubectl
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
 
-      - name: Install Helm
-        uses: azure/setup-helm@v3
-        with:
-          version: v3.14.0
+    - name: Install Helm
+      uses: azure/setup-helm@v3
+      with:
+        version: v3.14.0
 
-      - name: Deploy with Helm
-        run: |
-          helm upgrade --install devops-app ./helm-chart --atomic
+    - name: Deploy with Helm
+      run: |
+        helm upgrade --install devops-app ./helm-chart
